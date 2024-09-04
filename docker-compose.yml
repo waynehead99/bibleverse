@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:7.4-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./home/waynehead99/bible:/var/www/html
+    environment:
+      MYSQL_HOST: 10.0.248.15
+      MYSQL_DATABASE: bible_verses
+      MYSQL_USER: sqlsevr
+      MYSQL_PASSWORD: Gamma99Quest

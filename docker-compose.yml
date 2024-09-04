@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   web:
-    image: php:7.4-apache
+    build: .
     ports:
       - "8080:80"
     volumes:
-      - ./home/waynehead99/bible:/var/www/html
+      - ./src:/var/www/html
     environment:
       MYSQL_HOST: 10.0.248.15
       MYSQL_DATABASE: bible_verses

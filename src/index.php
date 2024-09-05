@@ -5,7 +5,6 @@ $db   = 'bible_verses';
 $user = 'sqlsev';
 $pass = 'Gamma99Quest';
 
-
 // Create connection
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -14,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to fetch name and email
+// SQL query to fetch the verse and application
 $sql = "SELECT verse, application FROM bible_verses";
 $result = $conn->query($sql);
 ?>
@@ -24,26 +23,59 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple MySQL Fetch</title>
+    <title>Bible Verse Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .verse-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .verse {
+            font-size: 3rem;
+            font-weight: bold;
+            font-style: italic;
+            color: #2c3e50;
+        }
+
+        .application {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Users List</h1>
-    <table border="1">
-        <tr>
-            <th>Verse</th>
-            <th>Application</th>
-        </tr>
+    <div class="verse-container">
         <?php
         if ($result->num_rows > 0) {
-            // Output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["verse"] . "</td><td>" . $row["application"] . "</td></tr>";
-            }
+            // Output the first row as the featured verse
+            $row = $result->fetch_assoc();
+            echo "<div class='verse'>" . $row["verse"] . "</div>";
+            echo "<div class='application'>" . $row["application"] . "</div>";
         } else {
-            echo "<tr><td colspan='2'>No results found</td></tr>";
+            echo "<div class='verse'>No verses found.</div>";
         }
         $conn->close();
         ?>
-    </table>
+    </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 // Database credentials
-$host = '10.0.248.15;
+$host = '10.0.248.15';
 $db   = 'bible_verses';
 $user = 'sqlsev';
 $pass = 'Gamma99Quest';
